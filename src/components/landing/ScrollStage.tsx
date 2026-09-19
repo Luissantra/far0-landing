@@ -97,8 +97,8 @@ export default function ScrollStage({
         Math.max(
           0,
           pinned
-            ? // Finish before the next section (overlapping by one viewport) starts sliding over.
-              -rect.top / Math.max(1, rect.height - viewport * 2)
+            ? // The next section overlaps by one viewport; let it slide in over the last quarter of the dolly.
+              -rect.top / Math.max(1, rect.height - viewport * 1.75)
             : (viewport * 0.85 - rect.top) / (rect.height + viewport * 0.45),
         ),
       );
