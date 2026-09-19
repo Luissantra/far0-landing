@@ -95,6 +95,9 @@ this standalone package. Run the complete check before committing or publishing.
 The committed lighthouse video is six seconds, 1920×1080, H.264, 24 fps,
 all-intra (`-g 1`), about 2.7 MB and silent. The poster is a 1920×1080 JPEG.
 
+The intro zoom before the hero is a pure CSS scroll-driven animation
+(`view-timeline`); unsupported browsers and reduced motion get a static intro.
+
 Scroll scrubbing is enabled from 768px and respects reduced motion. The static
 poster remains for mobile, reduced motion, disabled JavaScript and video errors.
 Video loading is deferred until its section is nearby.

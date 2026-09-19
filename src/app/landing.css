@@ -78,6 +78,10 @@
   width: min(100% - 8rem, 80rem);
   margin-inline: auto;
 }
+.lp main {
+  position: relative;
+  z-index: 1;
+}
 .lp .lp-nav {
   position: sticky;
   top: 0;
@@ -168,7 +172,93 @@
   padding: 0.65rem 1.2rem;
   font-size: 0.8125rem;
 }
+/* Intro: only the lockup, zooming into the symbol as the page scrolls. */
+.lp .lp-intro {
+  --lp-intro-icon: clamp(3.5rem, 9vw, 7rem);
+  position: relative;
+  height: 100dvh;
+  scroll-margin-top: 0;
+  background: var(--lp-ink);
+}
+.lp .lp-intro-stage {
+  position: sticky;
+  top: 0;
+  display: grid;
+  place-items: center;
+  height: 100dvh;
+  overflow: hidden;
+}
+.lp .lp-intro-lockup {
+  gap: calc(var(--lp-intro-icon) * 0.28);
+  transform-origin: calc(var(--lp-intro-icon) / 2) 50%;
+  will-change: transform, opacity;
+}
+.lp .lp-intro-lockup .lp-lockup-icon {
+  width: var(--lp-intro-icon);
+  height: var(--lp-intro-icon);
+}
+.lp .lp-intro-lockup .lp-wordmark {
+  font-size: calc(var(--lp-intro-icon) * 0.78);
+}
+.lp .lp-intro-hint {
+  position: absolute;
+  bottom: 2rem;
+  font-size: 0.8125rem;
+  color: var(--lp-muted);
+}
+.lp .lp-intro-hint span {
+  margin-left: 0.5rem;
+}
+@supports (animation-timeline: view()) {
+  @media (prefers-reduced-motion: no-preference) {
+    .lp .lp-intro {
+      height: 200dvh;
+      view-timeline: --lp-intro block;
+    }
+    .lp .lp-intro + .lp-nav {
+      margin-top: -100dvh;
+    }
+    .lp .lp-intro-lockup {
+      animation: lp-intro-zoom linear both;
+      animation-timeline: --lp-intro;
+      animation-range: contain 0% contain 100%;
+    }
+    .lp .lp-intro-lockup .lp-wordmark {
+      animation: lp-intro-fade linear both;
+      animation-timeline: --lp-intro;
+      animation-range: contain 0% contain 35%;
+    }
+    .lp .lp-intro-hint {
+      animation: lp-intro-fade linear both;
+      animation-timeline: --lp-intro;
+      animation-range: contain 0% contain 12%;
+    }
+  }
+}
+@keyframes lp-intro-zoom {
+  0% {
+    transform: translateX(0) scale(1);
+    opacity: 1;
+  }
+  70% {
+    opacity: 1;
+  }
+  100% {
+    transform: translateX(calc(50% - var(--lp-intro-icon) / 2)) scale(14);
+    opacity: 0;
+  }
+}
+@keyframes lp-intro-fade {
+  to {
+    opacity: 0;
+  }
+}
 .lp .lp-hero {
+  --lp-hero-tone: #0d2f29;
+  background:
+    radial-gradient(60% 55% at 78% 18%, #07b37c33, transparent 70%),
+    radial-gradient(70% 60% at 12% 100%, #008e6526, transparent 70%),
+    linear-gradient(180deg, var(--lp-hero-tone), var(--lp-ink) 82%);
   padding-top: clamp(3rem, 6vw, 6rem);
 }
 .lp .lp-hero-intro {
@@ -189,33 +279,26 @@
 }
 @media (prefers-reduced-motion: no-preference) {
   .lp h1 {
-    position: relative;
-    isolation: isolate;
-    overflow: hidden;
-    background: var(--lp-ink);
-  }
-  .lp h1::after {
-    content: "";
-    position: absolute;
-    inset: 0;
-    pointer-events: none;
-    background: linear-gradient(110deg, transparent 35%, #a7f3d0 50%, transparent 65%);
-    mix-blend-mode: darken;
+    color: transparent;
+    background-image: linear-gradient(
+      110deg,
+      var(--lp-paper) 40%,
+      #a7f3d0 50%,
+      var(--lp-paper) 60%
+    );
+    background-size: 300% 100%;
+    background-position: 100% 0;
+    -webkit-background-clip: text;
+    background-clip: text;
     animation: lp-hero-light 2.8s ease-in-out 0.35s both;
   }
 }
 @keyframes lp-hero-light {
-  0% {
-    opacity: 0;
-    transform: translateX(-100%);
+  from {
+    background-position: 100% 0;
   }
-  15%,
-  85% {
-    opacity: 1;
-  }
-  100% {
-    opacity: 0;
-    transform: translateX(100%);
+  to {
+    background-position: 0% 0;
   }
 }
 .lp .lp-hero-mark {
@@ -566,8 +649,13 @@
     font-size: 0.75rem;
   }
   .lp .lp-hero {
-    position: relative;
     padding-top: 2.5rem;
+  }
+  .lp .lp-hero-inner {
+    position: relative;
+  }
+  .lp .lp-intro-hint {
+    bottom: 1.5rem;
   }
   .lp .lp-hero-intro {
     max-width: 25ch;

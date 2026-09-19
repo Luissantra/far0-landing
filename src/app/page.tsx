@@ -29,6 +29,14 @@ export default function LandingPage() {
       <a className="lp-skip" href="#main">
         Skip to content
       </a>
+      <section className="lp-intro" id="top" aria-label="Far0">
+        <div className="lp-intro-stage">
+          <FaroLockup className="lp-intro-lockup" gradientId="intro-gradient" />
+          <a className="lp-intro-hint" href="#hero">
+            Scroll <span aria-hidden="true">↓</span>
+          </a>
+        </div>
+      </section>
       <header className="lp-nav">
         <nav className="lp-wrap lp-nav-inner" aria-label="Primary">
           <a href="#top" aria-label="Far0, back to top">
@@ -46,35 +54,37 @@ export default function LandingPage() {
         </nav>
       </header>
       <main id="main" tabIndex={-1}>
-        <section className="lp-hero lp-wrap" id="top" aria-labelledby="hero-title">
-          <p className="lp-hero-intro">An agentic command center for changing crises.</p>
-          <div className="lp-hero-composition">
-            <h1 id="hero-title">
-              See clearly.
-              <br />
-              Decide before
-              <br />
-              it&apos;s certain.
-            </h1>
-            <FaroIcon
-              className="lp-hero-mark"
-              title="Far0 square logo"
-              gradientId="hero-gradient"
-            />
-          </div>
-          <div className="lp-hero-bottom">
-            <p className="lp-lede">
-              Turn incomplete signals into coordinated action.
-              <br />
-              Keep a human in control.
-            </p>
-            <DashboardLink className="lp-btn lp-btn-primary" />
-          </div>
-          <div className="lp-hero-foot">
-            <p>Built for the HappyRobot challenge</p>
-            <a href="#problem">
-              How it works <span aria-hidden="true">↓</span>
-            </a>
+        <section className="lp-hero" id="hero" aria-labelledby="hero-title">
+          <div className="lp-hero-inner lp-wrap">
+            <p className="lp-hero-intro">An agentic command center for changing crises.</p>
+            <div className="lp-hero-composition">
+              <h1 id="hero-title">
+                See clearly.
+                <br />
+                Decide before
+                <br />
+                it&apos;s certain.
+              </h1>
+              <FaroIcon
+                className="lp-hero-mark"
+                title="Far0 square logo"
+                gradientId="hero-gradient"
+              />
+            </div>
+            <div className="lp-hero-bottom">
+              <p className="lp-lede">
+                Turn incomplete signals into coordinated action.
+                <br />
+                Keep a human in control.
+              </p>
+              <DashboardLink className="lp-btn lp-btn-primary" />
+            </div>
+            <div className="lp-hero-foot">
+              <p>Built for the HappyRobot challenge</p>
+              <a href="#problem">
+                How it works <span aria-hidden="true">↓</span>
+              </a>
+            </div>
           </div>
         </section>
         <section className="lp-response lp-wrap" id="problem" aria-labelledby="problem-title">

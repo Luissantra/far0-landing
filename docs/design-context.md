@@ -56,20 +56,31 @@ The hero has a subtle, one-time mint light sweep on entry. A separate subtle
 halo follows the mouse across the landing. Both respect reduced motion; the
 halo is disabled for mobile widths and touch and never intercepts clicks.
 
+The page opens with an intro screen showing only the lockup (square symbol and
+Far0 wordmark). Scrolling zooms into the symbol while the navigation and hero
+slide up over it. This uses CSS scroll-driven animations (`view-timeline`) with
+no JavaScript; browsers without support, or with reduced motion, show a static
+full-height intro followed by the hero.
+
+The hero sits on a full-bleed emerald tone (`#0d2f29` fading into ink, with two
+soft green radial glows). The one-time mint light sweep is applied to the
+headline text via `background-clip: text` so it works over the tinted surface.
+
 The decorative 3D video scrubs with scroll. It has no audio, controls, crisis
 map or wildfire imagery. Its camera and beacon move around a metallic,
 graphite lighthouse. A static poster covers unsupported/disabled motion.
 
 ## Current structure
 
-1. Sticky navigation with the Far0 lockup.
-2. Hero: “See clearly. Decide before it's certain.”
-3. Problem: “A crisis moves faster than certainty.”
-4. Lighthouse and the Perceive / Decide / Act loop.
-5. Human control: “Autonomy. With authority in your hands.” with an illustrative
+1. Intro screen with the Far0 lockup and scroll-driven zoom.
+2. Sticky navigation with the Far0 lockup.
+3. Hero: “See clearly. Decide before it's certain.”
+4. Problem: “A crisis moves faster than certainty.”
+5. Lighthouse and the Perceive / Decide / Act loop.
+6. Human control: “Autonomy. With authority in your hands.” with an illustrative
    decision review and native disclosure of trade-offs.
-6. Demo invitation and a secondary simulated Sierra Bermeja wildfire example.
-7. Footer.
+7. Demo invitation and a secondary simulated Sierra Bermeja wildfire example.
+8. Footer.
 
 The original brief listed eleven sections. The user subsequently requested
 this shorter structure; do not restore the earlier version without approval.
