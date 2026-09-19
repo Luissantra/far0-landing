@@ -6,10 +6,26 @@ type Props = {
   src: string;
   poster: string;
   children: React.ReactNode;
+  className?: string;
+  id?: string;
+  label?: string;
+  /** Scrub while the stage is pinned (taller than the viewport) instead of while it enters view. */
+  pinned?: boolean;
+  /** Owns the cursor halo; only one stage per page should. */
+  halo?: boolean;
 };
 
 // All-intra video (ffmpeg -g 1), ~1080p and under 15 MB keeps seeking responsive.
-export default function ScrollStage({ src, poster, children }: Props) {
+export default function ScrollStage({
+  src,
+  poster,
+  children,
+  className = "lp-stage",
+  id,
+  label,
+  pinned = false,
+  halo = true,
+}: Props) {
   const stageRef = useRef<HTMLDivElement>(null);
   const videoRef = useRef<HTMLVideoElement>(null);
   const [enabled, setEnabled] = useState(false);
@@ -18,7 +34,7 @@ export default function ScrollStage({ src, poster, children }: Props) {
 
   useEffect(() => {
     const root = stageRef.current?.closest<HTMLElement>(".lp");
-    if (!root) return;
+    if (!root || !halo) return;
 
     const media = window.matchMedia(
       "(min-width: 768px) and (hover: hover) and (pointer: fine) and (prefers-reduced-motion: no-preference)",
@@ -59,7 +75,7 @@ export default function ScrollStage({ src, poster, children }: Props) {
         root.style.removeProperty(property);
       }
     };
-  }, []);
+  }, [halo]);
 
   useEffect(() => {
     const stage = stageRef.current;
@@ -73,14 +89,22 @@ export default function ScrollStage({ src, poster, children }: Props) {
 
     const tick = () => {
       frame = 0;
-      if (!nearby || !motion.matches || !desktop.matches || video.readyState < 2) return;
-      if (!Number.isFinite(video.duration) || video.duration <= 0) return;
+      if (!nearby || !motion.matches || !desktop.matches) return;
       const rect = stage.getBoundingClientRect();
       const viewport = window.innerHeight;
       const progress = Math.min(
         1,
-        Math.max(0, (viewport * 0.85 - rect.top) / (rect.height + viewport * 0.45)),
+        Math.max(
+          0,
+          pinned
+            ? // Finish before the next section (overlapping by one viewport) starts sliding over.
+              -rect.top / Math.max(1, rect.height - viewport * 2)
+            : (viewport * 0.85 - rect.top) / (rect.height + viewport * 0.45),
+        ),
       );
+      if (pinned) stage.style.setProperty("--lp-progress", progress.toFixed(4));
+      if (video.readyState < 2) return;
+      if (!Number.isFinite(video.duration) || video.duration <= 0) return;
       const target = progress * Math.max(0, video.duration - 1 / 24);
       const delta = target - video.currentTime;
       if (Math.abs(delta) > 0.02 && !video.seeking) {
@@ -118,11 +142,12 @@ export default function ScrollStage({ src, poster, children }: Props) {
       video.removeEventListener("seeked", schedule);
       window.removeEventListener("scroll", schedule);
       window.removeEventListener("resize", schedule);
+      stage.style.removeProperty("--lp-progress");
     };
-  }, []);
+  }, [pinned]);
 
   return (
-    <div ref={stageRef} className="lp-stage">
+    <div ref={stageRef} className={className} id={id} aria-label={label}>
       <div className="lp-stage-media" aria-hidden="true">
         <div className="lp-stage-frame">
           {/* eslint-disable-next-line @next/next/no-img-element -- original poster shared with the video */}
@@ -132,7 +157,8 @@ export default function ScrollStage({ src, poster, children }: Props) {
             width={1920}
             height={1080}
             alt=""
-            loading="lazy"
+            loading={pinned ? "eager" : "lazy"}
+            fetchPriority={pinned ? "high" : "auto"}
             onError={(event) => {
               event.currentTarget.hidden = true;
             }}

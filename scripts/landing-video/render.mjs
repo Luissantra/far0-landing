@@ -1,4 +1,5 @@
 // Requires Blender 4.5 LTS (or BLENDER=<path>) and ffmpeg.
+// `node render.mjs` renders the stage orbit; `node render.mjs intro` renders the lantern dolly-in.
 import { spawnSync } from "node:child_process";
 import { mkdirSync, mkdtempSync, rmSync } from "node:fs";
 import { homedir } from "node:os";
@@ -11,6 +12,9 @@ const cache = join(homedir(), ".cache", "faro-render");
 mkdirSync(cache, { recursive: true });
 mkdirSync(outDir, { recursive: true });
 const framesDir = mkdtempSync(join(cache, "frames-"));
+const shot = process.argv[2] === "intro" ? "intro" : "stage";
+const name = shot === "intro" ? "faro-intro" : "faro-scroll";
+const posterName = shot === "intro" ? "faro-intro-poster" : "faro-poster";
 const seconds = 6;
 const renderFps = 8;
 const fps = 24;
@@ -34,6 +38,8 @@ try {
     framesDir,
     "--frames",
     String(seconds * renderFps),
+    "--shot",
+    shot,
   ]);
   run("ffmpeg", [
     "-y",
@@ -58,7 +64,7 @@ try {
     "-movflags",
     "+faststart",
     "-an",
-    join(outDir, "faro-scroll.mp4"),
+    join(outDir, `${name}.mp4`),
   ]);
   run("ffmpeg", [
     "-y",
@@ -68,10 +74,10 @@ try {
     "1",
     "-q:v",
     "3",
-    join(outDir, "faro-poster.jpg"),
+    join(outDir, `${posterName}.jpg`),
   ]);
   rmSync(framesDir, { recursive: true });
-  console.log("Rendered faro-scroll.mp4 and faro-poster.jpg");
+  console.log(`Rendered ${name}.mp4 and ${posterName}.jpg`);
 } catch (error) {
   console.error(`Render frames preserved at ${framesDir}`);
   throw error;

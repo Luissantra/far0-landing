@@ -119,6 +119,7 @@ test("logos, favicon and poster are served by the standalone app", async () => {
     "/brand/faro-logo-horizontal-on-light.svg",
     "/brand/faro-mark.svg",
     "/media/faro-poster.jpg",
+    "/media/faro-intro-poster.jpg",
   ];
   await Promise.all(
     paths.map(async (path) => {

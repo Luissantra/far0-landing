@@ -157,17 +157,36 @@
   padding: 0.65rem 1.2rem;
   font-size: 0.8125rem;
 }
-/* Intro: only the lockup, zooming into the symbol as the page scrolls. */
+/* Intro: the lockup over the lighthouse; scrolling dollies into the lantern room. */
 .lp .lp-intro {
   --lp-intro-icon: clamp(3.5rem, 9vw, 7rem);
+  --lp-progress: 0;
   position: relative;
   height: 100dvh;
   scroll-margin-top: 0;
   background: var(--lp-ink);
 }
+.lp .lp-intro .lp-stage-frame {
+  top: 0;
+  height: 100dvh;
+  background: var(--lp-ink);
+}
+.lp .lp-intro .lp-stage-scrim {
+  background:
+    radial-gradient(80% 70% at 50% 45%, transparent 40%, rgba(19, 23, 32, 0.55)),
+    linear-gradient(transparent 70%, var(--lp-ink));
+}
+.lp .lp-intro .lp-stage-scrim::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: #0d2f29;
+  opacity: clamp(0, (var(--lp-progress) - 0.7) * 2.6, 0.78);
+}
 .lp .lp-intro-stage {
   position: sticky;
   top: 0;
+  z-index: 1;
   display: grid;
   place-items: center;
   height: 100dvh;
@@ -175,6 +194,12 @@
 }
 .lp .lp-intro-lockup {
   gap: calc(var(--lp-intro-icon) * 0.28);
+  padding: 1.25rem 1.75rem;
+  border-radius: 1.5rem;
+  background: rgba(19, 23, 32, 0.35);
+  backdrop-filter: blur(14px);
+  opacity: clamp(0, 1 - var(--lp-progress) * 3.2, 1);
+  translate: 0 calc(var(--lp-progress) * -6rem);
 }
 .lp .lp-intro-lockup .lp-lockup-icon {
   width: var(--lp-intro-icon);
@@ -190,71 +215,17 @@
   bottom: 2rem;
   font-size: 0.8125rem;
   color: var(--lp-muted);
+  opacity: clamp(0, 1 - var(--lp-progress) * 8, 1);
 }
 .lp .lp-intro-hint span {
   margin-left: 0.5rem;
 }
-@supports (animation-timeline: view()) {
-  @media (prefers-reduced-motion: no-preference) {
-    .lp .lp-intro {
-      height: 200dvh;
-      view-timeline: --lp-intro block;
-    }
-    .lp .lp-intro + .lp-nav {
-      margin-top: -100dvh;
-    }
-    /* Size is animated instead of transform so the vector re-rasterizes crisply. */
-    .lp .lp-intro-lockup {
-      animation: lp-intro-close linear both;
-      animation-timeline: --lp-intro;
-      animation-range: contain 0% contain 35%;
-    }
-    .lp .lp-intro-lockup .lp-lockup-icon {
-      animation: lp-intro-zoom linear both;
-      animation-timeline: --lp-intro;
-      animation-range: contain 0% contain 100%;
-    }
-    .lp .lp-intro-lockup .lp-wordmark {
-      animation: lp-intro-collapse linear both;
-      animation-timeline: --lp-intro;
-      animation-range: contain 0% contain 35%;
-    }
-    .lp .lp-intro-hint {
-      animation: lp-intro-fade linear both;
-      animation-timeline: --lp-intro;
-      animation-range: contain 0% contain 12%;
-    }
+@media (min-width: 768px) and (prefers-reduced-motion: no-preference) {
+  .lp .lp-intro {
+    height: 300dvh;
   }
-}
-@keyframes lp-intro-zoom {
-  0% {
-    width: var(--lp-intro-icon);
-    height: var(--lp-intro-icon);
-    opacity: 1;
-  }
-  70% {
-    opacity: 1;
-  }
-  100% {
-    width: max(120vw, 120vh);
-    height: max(120vw, 120vh);
-    opacity: 0;
-  }
-}
-@keyframes lp-intro-close {
-  to {
-    gap: 0;
-  }
-}
-@keyframes lp-intro-collapse {
-  to {
-    width: 0;
-    opacity: 0;
-  }
-}
-@keyframes lp-intro-fade {
-  to {
-    opacity: 0;
+  .lp .lp-intro + .lp-nav {
+    margin-top: -100dvh;
   }
 }
 .lp .lp-hero {

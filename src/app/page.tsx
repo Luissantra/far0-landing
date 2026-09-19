@@ -29,14 +29,22 @@ export default function LandingPage() {
       <a className="lp-skip" href="#main">
         Skip to content
       </a>
-      <section className="lp-intro" id="top" aria-label="Far0">
+      <ScrollStage
+        className="lp-intro"
+        id="top"
+        label="Far0"
+        pinned
+        halo={false}
+        src="/media/faro-intro.mp4"
+        poster="/media/faro-intro-poster.jpg"
+      >
         <div className="lp-intro-stage">
           <FaroLockup className="lp-intro-lockup" gradientId="intro-gradient" />
           <a className="lp-intro-hint" href="#hero">
             Scroll <span aria-hidden="true">↓</span>
           </a>
         </div>
-      </section>
+      </ScrollStage>
       <header className="lp-nav">
         <nav className="lp-wrap lp-nav-inner" aria-label="Primary">
           <a href="#top" aria-label="Far0, back to top">

@@ -60,12 +60,16 @@ The hero has a subtle, one-time mint light sweep on entry. A separate subtle
 halo follows the mouse across the landing. Both respect reduced motion; the
 halo is disabled for mobile widths and touch and never intercepts clicks.
 
-The page opens with an intro screen showing only the lockup (square symbol and
-Far0 wordmark). Scrolling zooms into the symbol while the navigation and hero
-slide up over it. This uses CSS scroll-driven animations (`view-timeline`) with
-no JavaScript; the symbol's size is animated rather than a transform so the
-vector stays crisp at full-screen scale; browsers without support, or with
-reduced motion, show a static full-height intro followed by the hero.
+The page opens with a full-screen intro: the lockup (square symbol and Far0
+wordmark) floats over the studio lighthouse. Scrolling dollies the camera into
+the lantern room — past the gallery rail, between the supports, up to the
+emerald optic — so entering the site feels like entering the lighthouse's
+control room. The lockup fades out early, the frame tints to the hero tone at
+the end, then the navigation and hero slide up over it. The shot is a second
+Blender render of the same scene (`scene.py --shot intro`, perspective camera)
+scrubbed by `ScrollStage` in `pinned` mode; mobile, reduced motion and no-JS
+show the wide poster as a static intro. An earlier iteration zoomed the logo
+itself; it was replaced because the user wanted the lighthouse to be the way in.
 
 The hero sits on a full-bleed emerald tone (`#0d2f29` fading into ink, with two
 soft green radial glows). The one-time mint light sweep is applied to the
