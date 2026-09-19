@@ -82,22 +82,28 @@ this standalone package. Run the complete check before committing or publishing.
 - `src/app/globals.css` — Tailwind and base typography.
 - `src/app/landing.css` — scoped design, responsive layout and animation.
 - `src/app/icon.svg` — gradient square favicon.
-- `src/components/landing/Logo.tsx` — square SVG symbol and slashed-zero wordmark.
+- `src/components/landing/Logo.tsx` — square SVG symbol and vector wordmark.
 - `src/components/landing/ScrollStage.tsx` — the sole client component.
-- `public/brand/` — original user-supplied SVG exports.
-- `public/media/` — committed video and poster.
+- `public/brand/` — original user-supplied SVG exports and the Quiver wordmark export.
+- `public/media/` — committed videos and posters.
 - `scripts/landing-video/` — optional media renderer.
 - `docs/design-context.md` — confirmed decisions and continuation brief.
 - `AGENTS.md` — instructions for subsequent coding sessions.
 
 ## Media and motion
 
-The committed lighthouse video is six seconds, 1920×1080, H.264, 24 fps,
-all-intra (`-g 1`), about 2.7 MB and silent. The poster is a 1920×1080 JPEG.
+Two lighthouse videos are committed, each six seconds, 1920×1080, H.264,
+24 fps, all-intra (`-g 1`), about 3 MB and silent, with a 1920×1080 JPEG poster:
 
-Scroll scrubbing is enabled from 768px and respects reduced motion. The static
-poster remains for mobile, reduced motion, disabled JavaScript and video errors.
-Video loading is deferred until its section is nearby.
+- `faro-intro.mp4` — the intro dolly from the studio view into the lantern room,
+  scrubbed while the intro is pinned at the top of the page.
+- `faro-scroll.mp4` — the orbit shown in the system section as it scrolls in.
+
+Both use the same `ScrollStage` client component (`pinned` selects the intro
+behaviour). Scroll scrubbing is enabled from 768px and respects reduced motion.
+The static poster remains for mobile, reduced motion, disabled JavaScript and
+video errors; there the intro is a single static screen. Video loading is
+deferred until its section is nearby.
 
 The mouse halo is pointer-transparent and limited to fine mouse pointers,
 desktop widths and no reduced-motion preference. The hero's mint light sweep
@@ -106,7 +112,8 @@ runs once on entry and is disabled with reduced motion.
 To regenerate the media, install Blender 4.5 LTS and FFmpeg:
 
 ```sh
-npm run render:video
+npm run render:video   # faro-scroll.mp4 + faro-poster.jpg
+npm run render:intro   # faro-intro.mp4 + faro-intro-poster.jpg
 ```
 
 Set `BLENDER` if the executable is not named `blender` on your PATH. For example,

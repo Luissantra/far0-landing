@@ -12,6 +12,7 @@ parser = argparse.ArgumentParser()
 parser.add_argument("--output", required=True)
 parser.add_argument("--frames", type=int, default=144)
 parser.add_argument("--preview", action="store_true")
+parser.add_argument("--shot", choices=("stage", "intro"), default="stage")
 args = parser.parse_args(sys.argv[sys.argv.index("--") + 1:])
 output = Path(args.output)
 output.mkdir(parents=True, exist_ok=True)
@@ -137,8 +138,13 @@ for z in (1.15, 1.95):
     bpy.ops.object.transform_apply(location=False, rotation=False, scale=True)
     finish(window, "Recessed window", dark, 0.025)
 
+floor = material("Floor", (0.025, 0.033, 0.046), 0.45, 0.34)
 bpy.ops.mesh.primitive_plane_add(size=200)
-finish(bpy.context.object, "Studio floor", material("Floor", (0.025, 0.033, 0.046), 0.45, 0.34), 0)
+finish(bpy.context.object, "Studio floor", floor, 0)
+if args.shot == "intro":
+    bpy.ops.mesh.primitive_cylinder_add(vertices=96, radius=90, depth=140, location=(0, 0, 60))
+    cyclorama = finish(bpy.context.object, "Cyclorama", floor, 0)
+    cyclorama.display_type = "WIRE"
 
 area("Key softbox", (1, -5, 8), 1100, (0.85, 0.93, 1), 5)
 area("Edge softbox", (3, 3, 5), 1450, (0.5, 0.9, 0.77), 3)
@@ -176,17 +182,41 @@ beam.rotation_euler[1] = math.pi / 2
 bpy.ops.object.camera_add(location=(6, -10, 6))
 camera = bpy.context.object
 scene.camera = camera
-camera.data.type = "ORTHO"
-camera.data.ortho_scale = 8.6
-camera.data.lens = 50
 
-for frame, angle in ((1, -0.2), (args.frames, 0.2)):
-    camera.location = (10 * math.sin(angle + 0.4), -10 * math.cos(angle + 0.4), 5.7)
-    aim(camera, (0, 0, 1.8))
-    camera.keyframe_insert(data_path="location", frame=frame)
-    camera.keyframe_insert(data_path="rotation_euler", frame=frame)
-    beacon.rotation_euler.z = angle * 4 + 0.5
-    beacon.keyframe_insert(data_path="rotation_euler", frame=frame)
+if args.shot == "stage":
+    camera.data.type = "ORTHO"
+    camera.data.ortho_scale = 8.6
+    camera.data.lens = 50
+    for frame, angle in ((1, -0.2), (args.frames, 0.2)):
+        camera.location = (10 * math.sin(angle + 0.4), -10 * math.cos(angle + 0.4), 5.7)
+        aim(camera, (0, 0, 1.8))
+        camera.keyframe_insert(data_path="location", frame=frame)
+        camera.keyframe_insert(data_path="rotation_euler", frame=frame)
+        beacon.rotation_euler.z = angle * 4 + 0.5
+        beacon.keyframe_insert(data_path="rotation_euler", frame=frame)
+else:
+    # Dolly from the wide studio view into the lantern room until the optic fills the frame.
+    camera.data.type = "PERSP"
+    camera.data.lens = 38
+    camera.data.clip_start = 0.01
+    lantern = (0, 0, 3.06)
+    path = (
+        (1, (4.6, -8.4, 4.4), (0, 0, 1.9)),
+        (int(args.frames * 0.55), (1.6, -3.1, 3.5), (0, 0, 2.95)),
+        (args.frames, (0.28, -0.66, 3.03), lantern),
+    )
+    for frame, location, target in path:
+        camera.location = location
+        aim(camera, target)
+        camera.keyframe_insert(data_path="location", frame=frame)
+        camera.keyframe_insert(data_path="rotation_euler", frame=frame)
+    for frame, angle in ((1, 0.35), (args.frames, 1.1)):
+        beacon.rotation_euler.z = angle
+        beacon.keyframe_insert(data_path="rotation_euler", frame=frame)
+    for curve in camera.animation_data.action.fcurves:
+        for point in curve.keyframe_points:
+            point.interpolation = "BEZIER"
+            point.easing = "EASE_IN_OUT"
 
 scene.use_nodes = True
 nodes = scene.node_tree.nodes

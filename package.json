@@ -17,7 +17,8 @@
     "secrets:check": "node scripts/check-secrets.mjs",
     "test": "node --test scripts/smoke.test.mjs",
     "check": "npm run secrets:check && npm run format:check && npm run lint && npm run typecheck && npm run build && npm test",
-    "render:video": "node scripts/landing-video/render.mjs"
+    "render:video": "node scripts/landing-video/render.mjs",
+    "render:intro": "node scripts/landing-video/render.mjs intro"
   },
   "dependencies": {
     "next": "16.3.5",

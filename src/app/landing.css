@@ -78,6 +78,10 @@
   width: min(100% - 8rem, 80rem);
   margin-inline: auto;
 }
+.lp main {
+  position: relative;
+  z-index: 1;
+}
 .lp .lp-nav {
   position: sticky;
   top: 0;
@@ -104,26 +108,11 @@
   height: 2rem;
 }
 .lp .lp-wordmark {
-  font-family: var(--lp-mono);
-  font-size: 1.5rem;
-  font-weight: 600;
-  line-height: 1;
-  letter-spacing: -0.025em;
-}
-.lp .lp-zero {
-  position: relative;
-  display: inline-block;
-}
-.lp .lp-zero::after {
-  content: "";
-  position: absolute;
-  width: 0.07em;
-  height: 0.74em;
-  top: 50%;
-  left: 50%;
-  border-radius: 999px;
-  background: currentColor;
-  transform: translate(-50%, -50%) rotate(35deg);
+  display: block;
+  flex-shrink: 0;
+  height: 1.125rem;
+  width: auto;
+  color: var(--lp-paper);
 }
 .lp .lp-nav-links {
   display: flex;
@@ -168,7 +157,83 @@
   padding: 0.65rem 1.2rem;
   font-size: 0.8125rem;
 }
+/* Intro: the lockup over the lighthouse; scrolling dollies into the lantern room. */
+.lp .lp-intro {
+  --lp-intro-icon: clamp(3.5rem, 9vw, 7rem);
+  --lp-progress: 0;
+  position: relative;
+  height: 100dvh;
+  scroll-margin-top: 0;
+  background: var(--lp-ink);
+}
+.lp .lp-intro .lp-stage-frame {
+  top: 0;
+  height: 100dvh;
+  background: var(--lp-ink);
+}
+.lp .lp-intro .lp-stage-scrim {
+  background:
+    radial-gradient(80% 70% at 50% 45%, transparent 40%, rgba(19, 23, 32, 0.55)),
+    linear-gradient(transparent 70%, var(--lp-ink));
+}
+.lp .lp-intro .lp-stage-scrim::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: #0d2f29;
+  opacity: clamp(0, (var(--lp-progress) - 0.7) * 2.6, 0.78);
+}
+.lp .lp-intro-stage {
+  position: sticky;
+  top: 0;
+  z-index: 1;
+  display: grid;
+  place-items: center;
+  height: 100dvh;
+  overflow: hidden;
+}
+.lp .lp-intro-lockup {
+  gap: calc(var(--lp-intro-icon) * 0.28);
+  padding: 1.25rem 1.75rem;
+  border-radius: 1.5rem;
+  background: rgba(19, 23, 32, 0.35);
+  backdrop-filter: blur(14px);
+  opacity: clamp(0, 1 - var(--lp-progress) * 3.2, 1);
+  translate: 0 calc(var(--lp-progress) * -6rem);
+}
+.lp .lp-intro-lockup .lp-lockup-icon {
+  width: var(--lp-intro-icon);
+  height: var(--lp-intro-icon);
+}
+.lp .lp-intro-lockup .lp-wordmark {
+  --lp-intro-word: calc(var(--lp-intro-icon) * 0.56);
+  height: var(--lp-intro-word);
+  width: calc(var(--lp-intro-word) * 3.675);
+}
+.lp .lp-intro-hint {
+  position: absolute;
+  bottom: 2rem;
+  font-size: 0.8125rem;
+  color: var(--lp-muted);
+  opacity: clamp(0, 1 - var(--lp-progress) * 8, 1);
+}
+.lp .lp-intro-hint span {
+  margin-left: 0.5rem;
+}
+@media (min-width: 768px) and (prefers-reduced-motion: no-preference) {
+  .lp .lp-intro {
+    height: 300dvh;
+  }
+  .lp .lp-intro + .lp-nav {
+    margin-top: -100dvh;
+  }
+}
 .lp .lp-hero {
+  --lp-hero-tone: #0d2f29;
+  background:
+    radial-gradient(60% 55% at 78% 18%, #07b37c33, transparent 70%),
+    radial-gradient(70% 60% at 12% 100%, #008e6526, transparent 70%),
+    linear-gradient(180deg, var(--lp-hero-tone), var(--lp-ink) 82%);
   padding-top: clamp(3rem, 6vw, 6rem);
 }
 .lp .lp-hero-intro {
@@ -189,33 +254,26 @@
 }
 @media (prefers-reduced-motion: no-preference) {
   .lp h1 {
-    position: relative;
-    isolation: isolate;
-    overflow: hidden;
-    background: var(--lp-ink);
-  }
-  .lp h1::after {
-    content: "";
-    position: absolute;
-    inset: 0;
-    pointer-events: none;
-    background: linear-gradient(110deg, transparent 35%, #a7f3d0 50%, transparent 65%);
-    mix-blend-mode: darken;
+    color: transparent;
+    background-image: linear-gradient(
+      110deg,
+      var(--lp-paper) 40%,
+      #a7f3d0 50%,
+      var(--lp-paper) 60%
+    );
+    background-size: 300% 100%;
+    background-position: 100% 0;
+    -webkit-background-clip: text;
+    background-clip: text;
     animation: lp-hero-light 2.8s ease-in-out 0.35s both;
   }
 }
 @keyframes lp-hero-light {
-  0% {
-    opacity: 0;
-    transform: translateX(-100%);
+  from {
+    background-position: 100% 0;
   }
-  15%,
-  85% {
-    opacity: 1;
-  }
-  100% {
-    opacity: 0;
-    transform: translateX(100%);
+  to {
+    background-position: 0% 0;
   }
 }
 .lp .lp-hero-mark {
@@ -559,15 +617,20 @@
     height: 1.7rem;
   }
   .lp .lp-wordmark {
-    font-size: 1.3rem;
+    height: 1rem;
   }
   .lp .lp-nav-cta {
     padding-inline: 1rem;
     font-size: 0.75rem;
   }
   .lp .lp-hero {
-    position: relative;
     padding-top: 2.5rem;
+  }
+  .lp .lp-hero-inner {
+    position: relative;
+  }
+  .lp .lp-intro-hint {
+    bottom: 1.5rem;
   }
   .lp .lp-hero-intro {
     max-width: 25ch;

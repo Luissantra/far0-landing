@@ -43,18 +43,37 @@ nothing. Mass alerts always require human approval.
 ## Latest branding and motion decisions
 
 The displayed brand is **Far0**: capital F, lowercase ar, then the digit zero.
-The zero has a CSS diagonal slash so it is not dependent on font features.
+The wordmark is vector lettering (`FaroWordmark` in `Logo.tsx`): a squarish
+geometric sans with softly rounded corners echoing the symbol, and a slashed
+zero. It replaces the earlier monospace text so it renders identically
+everywhere and stays sharp at any size.
 
 Preserve the square geometry from the supplied SVG. The inline symbol and
 favicon use a dark emerald `#008e65` → green `#07b37c` → mint `#a7f3d0`
 gradient. Original SVG exports in `public/brand/` remain unchanged.
 
-The user allowed Quiver if needed. It was not used: the gradient was applied
-directly to the supplied SVG rather than generating a different symbol.
+The user allowed Quiver. It was not used for the symbol: the gradient was
+applied directly to the supplied SVG. It was used (model `arrow-2`) to generate
+the wordmark lettering; the raw export is `public/brand/far0-wordmark.svg`.
 
 The hero has a subtle, one-time mint light sweep on entry. A separate subtle
 halo follows the mouse across the landing. Both respect reduced motion; the
 halo is disabled for mobile widths and touch and never intercepts clicks.
+
+The page opens with a full-screen intro: the lockup (square symbol and Far0
+wordmark) floats over the studio lighthouse. Scrolling dollies the camera into
+the lantern room — past the gallery rail, between the supports, up to the
+emerald optic — so entering the site feels like entering the lighthouse's
+control room. The lockup fades out early, the frame tints to the hero tone at
+the end, then the navigation and hero slide up over it. The shot is a second
+Blender render of the same scene (`scene.py --shot intro`, perspective camera)
+scrubbed by `ScrollStage` in `pinned` mode; mobile, reduced motion and no-JS
+show the wide poster as a static intro. An earlier iteration zoomed the logo
+itself; it was replaced because the user wanted the lighthouse to be the way in.
+
+The hero sits on a full-bleed emerald tone (`#0d2f29` fading into ink, with two
+soft green radial glows). The one-time mint light sweep is applied to the
+headline text via `background-clip: text` so it works over the tinted surface.
 
 The decorative 3D video scrubs with scroll. It has no audio, controls, crisis
 map or wildfire imagery. Its camera and beacon move around a metallic,
@@ -62,14 +81,15 @@ graphite lighthouse. A static poster covers unsupported/disabled motion.
 
 ## Current structure
 
-1. Sticky navigation with the Far0 lockup.
-2. Hero: “See clearly. Decide before it's certain.”
-3. Problem: “A crisis moves faster than certainty.”
-4. Lighthouse and the Perceive / Decide / Act loop.
-5. Human control: “Autonomy. With authority in your hands.” with an illustrative
+1. Intro screen with the Far0 lockup and scroll-driven zoom.
+2. Sticky navigation with the Far0 lockup.
+3. Hero: “See clearly. Decide before it's certain.”
+4. Problem: “A crisis moves faster than certainty.”
+5. Lighthouse and the Perceive / Decide / Act loop.
+6. Human control: “Autonomy. With authority in your hands.” with an illustrative
    decision review and native disclosure of trade-offs.
-6. Demo invitation and a secondary simulated Sierra Bermeja wildfire example.
-7. Footer.
+7. Demo invitation and a secondary simulated Sierra Bermeja wildfire example.
+8. Footer.
 
 The original brief listed eleven sections. The user subsequently requested
 this shorter structure; do not restore the earlier version without approval.
