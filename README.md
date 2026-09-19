@@ -82,9 +82,9 @@ this standalone package. Run the complete check before committing or publishing.
 - `src/app/globals.css` — Tailwind and base typography.
 - `src/app/landing.css` — scoped design, responsive layout and animation.
 - `src/app/icon.svg` — gradient square favicon.
-- `src/components/landing/Logo.tsx` — square SVG symbol and slashed-zero wordmark.
+- `src/components/landing/Logo.tsx` — square SVG symbol and vector wordmark.
 - `src/components/landing/ScrollStage.tsx` — the sole client component.
-- `public/brand/` — original user-supplied SVG exports.
+- `public/brand/` — original user-supplied SVG exports and the Quiver wordmark export.
 - `public/media/` — committed video and poster.
 - `scripts/landing-video/` — optional media renderer.
 - `docs/design-context.md` — confirmed decisions and continuation brief.

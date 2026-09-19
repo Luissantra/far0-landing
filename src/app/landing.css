@@ -108,26 +108,11 @@
   height: 2rem;
 }
 .lp .lp-wordmark {
-  font-family: var(--lp-mono);
-  font-size: 1.5rem;
-  font-weight: 600;
-  line-height: 1;
-  letter-spacing: -0.025em;
-}
-.lp .lp-zero {
-  position: relative;
-  display: inline-block;
-}
-.lp .lp-zero::after {
-  content: "";
-  position: absolute;
-  width: 0.07em;
-  height: 0.74em;
-  top: 50%;
-  left: 50%;
-  border-radius: 999px;
-  background: currentColor;
-  transform: translate(-50%, -50%) rotate(35deg);
+  display: block;
+  flex-shrink: 0;
+  height: 1.125rem;
+  width: auto;
+  color: var(--lp-paper);
 }
 .lp .lp-nav-links {
   display: flex;
@@ -190,15 +175,15 @@
 }
 .lp .lp-intro-lockup {
   gap: calc(var(--lp-intro-icon) * 0.28);
-  transform-origin: calc(var(--lp-intro-icon) / 2) 50%;
-  will-change: transform, opacity;
 }
 .lp .lp-intro-lockup .lp-lockup-icon {
   width: var(--lp-intro-icon);
   height: var(--lp-intro-icon);
 }
 .lp .lp-intro-lockup .lp-wordmark {
-  font-size: calc(var(--lp-intro-icon) * 0.78);
+  --lp-intro-word: calc(var(--lp-intro-icon) * 0.56);
+  height: var(--lp-intro-word);
+  width: calc(var(--lp-intro-word) * 3.675);
 }
 .lp .lp-intro-hint {
   position: absolute;
@@ -218,13 +203,19 @@
     .lp .lp-intro + .lp-nav {
       margin-top: -100dvh;
     }
+    /* Size is animated instead of transform so the vector re-rasterizes crisply. */
     .lp .lp-intro-lockup {
+      animation: lp-intro-close linear both;
+      animation-timeline: --lp-intro;
+      animation-range: contain 0% contain 35%;
+    }
+    .lp .lp-intro-lockup .lp-lockup-icon {
       animation: lp-intro-zoom linear both;
       animation-timeline: --lp-intro;
       animation-range: contain 0% contain 100%;
     }
     .lp .lp-intro-lockup .lp-wordmark {
-      animation: lp-intro-fade linear both;
+      animation: lp-intro-collapse linear both;
       animation-timeline: --lp-intro;
       animation-range: contain 0% contain 35%;
     }
@@ -237,14 +228,27 @@
 }
 @keyframes lp-intro-zoom {
   0% {
-    transform: translateX(0) scale(1);
+    width: var(--lp-intro-icon);
+    height: var(--lp-intro-icon);
     opacity: 1;
   }
   70% {
     opacity: 1;
   }
   100% {
-    transform: translateX(calc(50% - var(--lp-intro-icon) / 2)) scale(14);
+    width: max(120vw, 120vh);
+    height: max(120vw, 120vh);
+    opacity: 0;
+  }
+}
+@keyframes lp-intro-close {
+  to {
+    gap: 0;
+  }
+}
+@keyframes lp-intro-collapse {
+  to {
+    width: 0;
     opacity: 0;
   }
 }
@@ -642,7 +646,7 @@
     height: 1.7rem;
   }
   .lp .lp-wordmark {
-    font-size: 1.3rem;
+    height: 1rem;
   }
   .lp .lp-nav-cta {
     padding-inline: 1rem;

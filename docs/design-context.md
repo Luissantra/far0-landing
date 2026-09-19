@@ -43,14 +43,18 @@ nothing. Mass alerts always require human approval.
 ## Latest branding and motion decisions
 
 The displayed brand is **Far0**: capital F, lowercase ar, then the digit zero.
-The zero has a CSS diagonal slash so it is not dependent on font features.
+The wordmark is vector lettering (`FaroWordmark` in `Logo.tsx`): a squarish
+geometric sans with softly rounded corners echoing the symbol, and a slashed
+zero. It replaces the earlier monospace text so it renders identically
+everywhere and stays sharp at any size.
 
 Preserve the square geometry from the supplied SVG. The inline symbol and
 favicon use a dark emerald `#008e65` → green `#07b37c` → mint `#a7f3d0`
 gradient. Original SVG exports in `public/brand/` remain unchanged.
 
-The user allowed Quiver if needed. It was not used: the gradient was applied
-directly to the supplied SVG rather than generating a different symbol.
+The user allowed Quiver. It was not used for the symbol: the gradient was
+applied directly to the supplied SVG. It was used (model `arrow-2`) to generate
+the wordmark lettering; the raw export is `public/brand/far0-wordmark.svg`.
 
 The hero has a subtle, one-time mint light sweep on entry. A separate subtle
 halo follows the mouse across the landing. Both respect reduced motion; the
@@ -59,8 +63,9 @@ halo is disabled for mobile widths and touch and never intercepts clicks.
 The page opens with an intro screen showing only the lockup (square symbol and
 Far0 wordmark). Scrolling zooms into the symbol while the navigation and hero
 slide up over it. This uses CSS scroll-driven animations (`view-timeline`) with
-no JavaScript; browsers without support, or with reduced motion, show a static
-full-height intro followed by the hero.
+no JavaScript; the symbol's size is animated rather than a transform so the
+vector stays crisp at full-screen scale; browsers without support, or with
+reduced motion, show a static full-height intro followed by the hero.
 
 The hero sits on a full-bleed emerald tone (`#0d2f29` fading into ink, with two
 soft green radial glows). The one-time mint light sweep is applied to the
