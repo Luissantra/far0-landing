@@ -4,8 +4,8 @@ import { FaroLockup, FaroIcon } from "@/components/landing/Logo";
 
 const steps = [
   {
-    name: "Filter",
-    text: "Find the signals that matter.",
+    name: "Understand",
+    text: "Identify the new threat and who is at risk.",
     icon: (
       <>
         <circle cx="20" cy="20" r="3" fill="currentColor" stroke="none" />
@@ -15,7 +15,7 @@ const steps = [
   },
   {
     name: "Prioritize",
-    text: "Turn signals into priorities.",
+    text: "Update priorities as the situation evolves.",
     icon: (
       <>
         <path d="M12 9h23M12 20h16M12 31h9" />
@@ -27,7 +27,7 @@ const steps = [
   },
   {
     name: "Coordinate",
-    text: "Put resources where they’re needed.",
+    text: "Bring help where it is needed.",
     icon: (
       <>
         <path d="M5 20h9m6-3 8-8h7m-15 14 8 8h7" />
@@ -79,7 +79,7 @@ function InformationRibbon() {
                 />
               </li>
               <li className="lp-ribbon-message">
-                Less noise. <span>More action.</span>
+                Changing situations. <span>Shared priorities.</span>
               </li>
               <li className="lp-ribbon-brand">
                 <span className="lp-ribbon-label">Partner</span>
@@ -93,7 +93,7 @@ function InformationRibbon() {
                 />
               </li>
               <li className="lp-ribbon-message">
-                One goal. <span>Zero preventable harm.</span>
+                Coordinated teams. <span>People first.</span>
               </li>
               <li className="lp-ribbon-brand">
                 <span className="lp-ribbon-label">Signal intelligence</span>
@@ -149,7 +149,7 @@ export default function LandingPage() {
           </a>
           <ul className="lp-nav-links">
             <li>
-              <a href="#how">The system</a>
+              <a href="#problem">The response</a>
             </li>
             <li>
               <a href="#control">Human control</a>
@@ -161,14 +161,12 @@ export default function LandingPage() {
       <main id="main" tabIndex={-1}>
         <section className="lp-hero" id="hero" aria-labelledby="hero-title">
           <div className="lp-hero-inner lp-wrap">
-            <p className="lp-hero-intro">Agentic crisis response</p>
+            <p className="lp-hero-intro">Adaptive crisis response</p>
             <div className="lp-hero-composition">
               <h1 id="hero-title">
-                From noise
+                When danger shifts,
                 <br />
-                to coordinated
-                <br />
-                action.
+                help must follow.
               </h1>
               <FaroIcon
                 className="lp-hero-mark"
@@ -178,19 +176,18 @@ export default function LandingPage() {
             </div>
             <div className="lp-hero-bottom">
               <p className="lp-lede">
-                Filter the noise. Rank what matters.
-                <br />
-                Coordinate the response.
+                Far0 helps emergency teams adapt priorities and coordinate resources as a crisis
+                evolves—keeping people at risk at the center of the response.
               </p>
               <div className="lp-hero-actions">
-                <a className="lp-btn lp-btn-primary" href="#how">
-                  See Far0 respond <span aria-hidden="true">↗</span>
+                <a className="lp-btn lp-btn-primary" href="#response">
+                  See the simulated response <span aria-hidden="true">↗</span>
                 </a>
                 <DashboardLink className="lp-btn lp-btn-outline" />
               </div>
             </div>
             <div className="lp-hero-foot">
-              <p>One goal: zero preventable harm.</p>
+              <p>For the teams people depend on.</p>
               <a href="#meaning">
                 What Far0 stands for <span aria-hidden="true">↓</span>
               </a>
@@ -200,16 +197,21 @@ export default function LandingPage() {
         <InformationRibbon />
         <section className="lp-response lp-wrap" id="problem" aria-labelledby="problem-title">
           <div className="lp-section-heading">
-            <h2 id="problem-title">
-              Intelligence,
-              <br />
-              coordinated.
-            </h2>
-            <p>Less noise. Clear priorities. Resources in motion.</p>
+            <div>
+              <p className="lp-section-label">Sierra Bermeja · Simulated scenario</p>
+              <h2 id="problem-title">
+                A change in the wind.
+                <br />A community now at risk.
+              </h2>
+            </div>
+            <p>
+              The situation has changed. Teams need to know who is now at risk, where help is needed
+              and what should happen next.
+            </p>
           </div>
           <div className="lp-system" id="how">
             <ScrollStage src="/media/faro-scroll.mp4" poster="/media/faro-poster.jpg" steps={steps}>
-              <p className="lp-render-caption">New information. Reassess. Adapt.</p>
+              <p className="lp-render-caption">Understand the change. Coordinate the response.</p>
             </ScrollStage>
             <div className="lp-technology">
               <a className="lp-happyrobot" href="https://www.happyrobot.ai">
@@ -225,16 +227,19 @@ export default function LandingPage() {
             <div className="lp-control-copy">
               <p className="lp-section-label">Human control</p>
               <h2 id="control-title">
-                Autonomous action.
+                People will act on these alerts.
                 <br />
-                Human authority.
+                People must approve them.
               </h2>
             </div>
             <div className="lp-control-copy">
               <p className="lp-control-promise">Mass alerts always need human approval.</p>
               <details className="lp-consequence">
                 <summary>Before an alert is sent</summary>
-                <p>Review recipients and safety guidance. Approve, hold or override.</p>
+                <p>
+                  Review who will receive the warning and what it asks them to do. Approve, hold or
+                  override.
+                </p>
               </details>
             </div>
           </div>
@@ -242,11 +247,16 @@ export default function LandingPage() {
         <section className="lp-demo lp-wrap" id="demo" aria-labelledby="demo-title">
           <div className="lp-demo-top">
             <h2 id="demo-title">
-              Change the situation.
+              See how the response adapts
               <br />
-              See Far0 respond.
+              when more people are at risk.
             </h2>
-            <DashboardLink className="lp-btn lp-btn-primary" />
+            <div className="lp-demo-actions">
+              <a className="lp-btn lp-btn-primary" href="#response">
+                Explore the simulation
+              </a>
+              <DashboardLink className="lp-btn lp-btn-outline" />
+            </div>
           </div>
           <div className="lp-use-case">
             <p>
@@ -256,13 +266,11 @@ export default function LandingPage() {
             </p>
             <div>
               <h3>Sierra Bermeja wildfire</h3>
-              <p>A wind shift. Reassigned firefighting resources. A human-approved alert.</p>
+              <p>Follow the response from a wind update to an alert ready for human review.</p>
               <p className="lp-case-context">Scenario context: 112 Andalucía and INFOCA.</p>
             </div>
           </div>
-          <p className="lp-demo-note">
-            Hackathon prototype. Communications are simulated by default.
-          </p>
+          <p className="lp-demo-note">Hackathon prototype. This simulation sends no messages.</p>
         </section>
       </main>
       <footer className="lp-footer lp-wrap">

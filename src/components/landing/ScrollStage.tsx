@@ -21,27 +21,27 @@ const responseStages = [
   {
     event: "Wind shift detected.",
     pending: "Detect a new signal.",
-    context: "A new community is at risk.",
+    context: "A wind update reveals a new community at risk.",
     priority: "New signal",
     status: "Assessing the new signal",
   },
   {
     event: "New threat prioritized.",
     pending: "Prioritize the new threat.",
-    context: "The new threat moves to the top.",
+    context: "The new threat moves up the response queue.",
     priority: "High priority",
     status: "Coordinating the response",
   },
   {
     event: "Firefighting resources reassigned.",
     pending: "Reassign firefighting resources.",
-    context: "Firefighting resources move to the new threat.",
+    context: "Firefighting resources are reassigned to the community now at risk.",
     priority: "Resources reassigned",
     status: "Preparing the alert",
   },
   {
     event: "Alert ready for approval",
-    context: "Review recipients and safety guidance.",
+    context: "Review who will receive the warning and what it asks them to do.",
     priority: "Human approval",
     status: "Alert ready for approval",
   },
@@ -370,6 +370,7 @@ export default function ScrollStage({
             </div>
           </dl>
           <p className="lp-meaning-note">Our ambition. Every response.</p>
+          <p className="lp-meaning-note">Automated coordination. Human-approved alerts.</p>
         </div>
       </div>
       <div className="lp-system-copy">
@@ -421,7 +422,8 @@ export default function ScrollStage({
             <span className="lp-priority">{response?.priority ?? "High priority"}</span>
           </div>
           <p className="lp-response-context" key={responseIndex ?? "overview"}>
-            {response?.context ?? "A new community is at risk."}
+            {response?.context ??
+              "A wind shift puts another community at risk. The response must change with it."}
           </p>
           <ol className="lp-response-events" id="response-events" aria-label="Simulated response">
             {responseStages.slice(0, -1).map((stage, index) => (
@@ -485,7 +487,7 @@ export default function ScrollStage({
               Human oversight <span aria-hidden="true">→</span>
             </a>
           </div>
-          <p className="lp-decision-gate">Illustrative scenario. No messages are sent.</p>
+          <p className="lp-decision-gate">Simulated scenario. No messages are sent.</p>
         </div>
       </figure>
     </>

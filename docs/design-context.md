@@ -84,18 +84,27 @@ graphite lighthouse. A static poster covers unsupported/disabled motion.
 
 The user requested integration against the latest `main` (`bcb5455`) after
 another session added the intro dolly. Preserve that opening and its media.
-The approved storytelling from this session is combined with it:
+The current review branch combines that opening with the human-centered copy
+requested by the user. It must not reach `main` without their approval:
 
-- Hero: “From noise to coordinated action.”
+- Hero: “When danger shifts, help must follow.” Far0 helps emergency teams
+  adapt priorities and coordinate resources with people at risk at the center.
+- The hero CTA and closing simulation CTA link directly to `#response`.
+  Dashboard links remain separate and unavailable until configured.
+- The system introduction starts with “A change in the wind. A community now
+  at risk.” Sierra Bermeja is explicitly labeled as a simulated example.
 - Far0 means Fully Automated Response. Beside the second lighthouse, F / a / r
   explains each word while the zero cycles through “harm”, “time lost” and
   “victims”. “Our ambition” makes the goal aspirational, not a guarantee.
+  The user explicitly requested preserving this visual rotation. “Automated
+  coordination. Human-approved alerts.” clarifies the scope next to the name.
+  Repeated zero-harm slogans elsewhere are removed.
 - The typing animation pauses offscreen, in a hidden tab or using Pause / Resume.
   Reduced motion and no-JS show static alternatives. Screen readers receive a
   stable description. All client animation remains in `ScrollStage.tsx`.
 - The user-described flow is Jev (typesafe.ai) filtering → scoring and priority
   ranking → an LLM agent coordinating resources → reassessment.
-- Under the lighthouse, Filter / Prioritize / Coordinate icons lead into one
+- Under the lighthouse, Understand / Prioritize / Coordinate icons lead into one
   glass card. A wind shift threatens a new community and Far0 reassigns
   firefighting resources.
 - The card starts with a complete summary. Show the response / Next step /
@@ -105,12 +114,16 @@ The approved storytelling from this session is combined with it:
 - Step changes are announced politely. At the lower Back bound, focus moves
   to Next step without scrolling. Reduced motion removes transitions and
   no-JS keeps the summary with controls hidden.
+- Human control explains why approval matters: “People will act on these
+  alerts. People must approve them.” The closing invitation follows the
+  simulation through to an alert ready for review, without implying that
+  this landing can send alerts or let visitors change the situation.
 
 The user asked for a horizontal strip with logos, including Junta de Andalucía
 as a partner, and short slogans. It sits immediately below the hero, using
 the existing ink, emerald and mint palette. Content includes HappyRobot,
-Junta de Andalucía, Jev / typesafe.ai, HackSpain 2026, “Less noise. More action.”
-and “One goal. Zero preventable harm.” Do not add other partnership claims
+Junta de Andalucía, Jev / typesafe.ai, HackSpain 2026, “Changing situations.
+Shared priorities.” and “Coordinated teams. People first.” Do not add other partnership claims
 without user confirmation.
 
 The strip uses a slow CSS loop with a native Pause information strip checkbox.
@@ -141,11 +154,11 @@ Original Far0 SVG exports remain unchanged.
 
 1. Intro dolly into the lighthouse with the Far0 lockup.
 2. Sticky navigation with the Far0 lockup.
-3. Emerald hero: “From noise to coordinated action.”
+3. Emerald hero: “When danger shifts, help must follow.”
 4. Horizontal partner, technology and mission strip.
-5. System introduction: “Intelligence, coordinated.”
+5. Simulated example: “A change in the wind. A community now at risk.”
 6. Lighthouse beside the Far0 meaning, followed by icons and the manual response card.
-7. Human control: “Autonomous action. Human authority.” with a native disclosure.
+7. Human control: “People will act on these alerts. People must approve them.” with a native disclosure.
 8. Demo invitation and a secondary simulated Sierra Bermeja wildfire example.
 9. Footer.
 

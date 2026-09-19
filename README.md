@@ -1,6 +1,7 @@
 # Far0 landing
 
-Standalone landing for **Far0**, an agentic command center for changing crises.
+Standalone landing for **Far0**, helping emergency teams adapt their response
+as a crisis changes, with the people at risk at the center of the story.
 HackSpain 2026 · HappyRobot challenge.
 
 The landing is served at `/`; `/landing` redirects to `/`. This repository
@@ -119,7 +120,7 @@ with Pause / Resume. Typing pauses offscreen or in a hidden tab. Reduced motion
 and disabled JavaScript show all goals statically; screen readers receive one
 stable description.
 
-Filter / Prioritize / Coordinate icons and one glass card sit underneath.
+Understand / Prioritize / Coordinate icons and one glass card sit underneath.
 “Show the response” starts the manual sequence: wind shift, threat priority,
 resource reassignment and “Alert ready for approval”. “Next step”, “Back” and
 “Replay scenario” never advance automatically or approve an alert. Each change
@@ -127,6 +128,13 @@ has a polite status announcement. Returning to step one moves focus from the
 disabled Back button to Next step without scrolling. Without JavaScript, the
 full summary stays visible and the controls are hidden. Reduced motion keeps
 the controls without transitions. The landing sends no messages.
+
+The hero reads “When danger shifts, help must follow.” Its primary CTA and
+the closing simulation CTA link directly to the illustrative response card.
+The story follows a newly threatened community, the teams coordinating help
+and the person reviewing the alert. The rotating zero aspirations remain
+beside the lighthouse, qualified by “Our ambition” and “Automated coordination.
+Human-approved alerts.” Dashboard links still use the build-time configuration.
 
 The mouse halo is pointer-transparent and limited to fine mouse pointers,
 desktop widths and no reduced-motion preference. The hero's mint light sweep

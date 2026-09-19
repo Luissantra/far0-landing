@@ -2,9 +2,9 @@ import type { Metadata } from "next";
 import "./globals.css";
 import "./landing.css";
 
-const title = "Far0 · From noise to coordinated action.";
+const title = "Far0 · When danger shifts, help must follow.";
 const description =
-  "Far0 filters signals, ranks priorities and coordinates resources as a crisis evolves. Autonomous action with human oversight. HackSpain 2026 · HappyRobot challenge.";
+  "Far0 helps emergency teams adapt priorities and coordinate resources as a crisis evolves, keeping people at risk at the center of the response. HackSpain 2026.";
 const siteUrl =
   process.env.NEXT_PUBLIC_SITE_URL?.trim() ||
   (process.env.VERCEL_PROJECT_PRODUCTION_URL
