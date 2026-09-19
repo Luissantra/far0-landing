@@ -69,7 +69,7 @@ after(async () => {
 test("the root serves the landing without the operator dashboard", () => {
   assert.equal([...html.matchAll(/<main\b/g)].length, 1);
   assert.equal([...html.matchAll(/<h1\b/g)].length, 1);
-  assert.match(html, /From noise/);
+  assert.match(html, /When danger shifts/);
   assert.match(html, /Simulated scenario/);
   assert.match(html, /Mass alerts always need human approval/);
   assert.match(html, /<details\b/);

@@ -84,8 +84,8 @@ graphite lighthouse. A static poster covers unsupported/disabled motion.
 
 The user requested integration against the latest `main` (`bcb5455`) after
 another session added the intro dolly. Preserve that opening and its media.
-The current review branch combines that opening with the human-centered copy
-requested by the user. It must not reach `main` without their approval:
+The user reviewed the human-centered copy in a branch preview and approved
+its integration into `main`. It combines that opening with the following story:
 
 - Hero: “When danger shifts, help must follow.” Far0 helps emergency teams
   adapt priorities and coordinate resources with people at risk at the center.
