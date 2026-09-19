@@ -2,9 +2,9 @@ import type { Metadata } from "next";
 import "./globals.css";
 import "./landing.css";
 
-const title = "Far0 · See clearly. Decide before it's certain.";
+const title = "Far0 · From noise to coordinated action.";
 const description =
-  "Far0 is an agentic command center for changing crises. Turn incomplete signals into coordinated action, adapt the plan and keep a human in control. HackSpain 2026 · HappyRobot challenge.";
+  "Far0 filters signals, ranks priorities and coordinates resources as a crisis evolves. Autonomous action with human oversight. HackSpain 2026 · HappyRobot challenge.";
 const siteUrl =
   process.env.NEXT_PUBLIC_SITE_URL?.trim() ||
   (process.env.VERCEL_PROJECT_PRODUCTION_URL

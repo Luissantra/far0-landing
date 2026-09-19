@@ -83,8 +83,8 @@ this standalone package. Run the complete check before committing or publishing.
 - `src/app/landing.css` — scoped design, responsive layout and animation.
 - `src/app/icon.svg` — gradient square favicon.
 - `src/components/landing/Logo.tsx` — square SVG symbol and vector wordmark.
-- `src/components/landing/ScrollStage.tsx` — the sole client component.
-- `public/brand/` — original user-supplied SVG exports and the Quiver wordmark export.
+- `src/components/landing/ScrollStage.tsx` — videos, name animation and manual response; the sole client component.
+- `public/brand/` — original Far0 exports, Quiver wordmark and official partner/technology logos.
 - `public/media/` — committed videos and posters.
 - `scripts/landing-video/` — optional media renderer.
 - `docs/design-context.md` — confirmed decisions and continuation brief.
@@ -104,6 +104,29 @@ behaviour). Scroll scrubbing is enabled from 768px and respects reduced motion.
 The static poster remains for mobile, reduced motion, disabled JavaScript and
 video errors; there the intro is a single static screen. Video loading is
 deferred until its section is nearby.
+
+Below the emerald hero, a horizontal information strip mixes HappyRobot and
+Junta de Andalucía logos, the Jev / typesafe.ai credit, HackSpain 2026 and short
+mission statements. A native checkbox pauses the CSS animation without
+JavaScript, and hovering pauses it on pointer devices. Reduced motion shows
+all items in a static, wrapping layout. The decorative duplicate is hidden
+from assistive technology. All logos are served locally; asset provenance and
+the user-selected partner are recorded in `docs/design-context.md`.
+
+Beside the second lighthouse, F / a / r explains Fully / Automated / Response.
+The zero types “harm”, “time lost” and “victims” as an explicit aspiration,
+with Pause / Resume. Typing pauses offscreen or in a hidden tab. Reduced motion
+and disabled JavaScript show all goals statically; screen readers receive one
+stable description.
+
+Filter / Prioritize / Coordinate icons and one glass card sit underneath.
+“Show the response” starts the manual sequence: wind shift, threat priority,
+resource reassignment and “Alert ready for approval”. “Next step”, “Back” and
+“Replay scenario” never advance automatically or approve an alert. Each change
+has a polite status announcement. Returning to step one moves focus from the
+disabled Back button to Next step without scrolling. Without JavaScript, the
+full summary stays visible and the controls are hidden. Reduced motion keeps
+the controls without transitions. The landing sends no messages.
 
 The mouse halo is pointer-transparent and limited to fine mouse pointers,
 desktop widths and no reduced-motion preference. The hero's mint light sweep

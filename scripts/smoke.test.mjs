@@ -69,7 +69,7 @@ after(async () => {
 test("the root serves the landing without the operator dashboard", () => {
   assert.equal([...html.matchAll(/<main\b/g)].length, 1);
   assert.equal([...html.matchAll(/<h1\b/g)].length, 1);
-  assert.match(html, /See clearly/);
+  assert.match(html, /From noise/);
   assert.match(html, /Simulated scenario/);
   assert.match(html, /Mass alerts always need human approval/);
   assert.match(html, /<details\b/);
@@ -118,6 +118,8 @@ test("logos, favicon and poster are served by the standalone app", async () => {
     "/brand/faro-logo-horizontal-on-dark.svg",
     "/brand/faro-logo-horizontal-on-light.svg",
     "/brand/faro-mark.svg",
+    "/brand/happyrobot.svg",
+    "/brand/junta-de-andalucia.png",
     "/media/faro-poster.jpg",
     "/media/faro-intro-poster.jpg",
   ];

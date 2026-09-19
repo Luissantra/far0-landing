@@ -1,10 +1,42 @@
+import Image from "next/image";
 import ScrollStage from "@/components/landing/ScrollStage";
 import { FaroLockup, FaroIcon } from "@/components/landing/Logo";
 
 const steps = [
-  { name: "Perceive", text: "Keep confirmed facts separate. Verify the gaps that matter." },
-  { name: "Decide", text: "Show the plan’s assumptions and the cost of waiting." },
-  { name: "Act", text: "Coordinate calls and SMS. Replan when an assumption breaks." },
+  {
+    name: "Filter",
+    text: "Find the signals that matter.",
+    icon: (
+      <>
+        <circle cx="20" cy="20" r="3" fill="currentColor" stroke="none" />
+        <path d="M20 5A15 15 0 0 0 5 20M35 20A15 15 0 0 1 20 35M20 11A9 9 0 0 0 11 20M29 20A9 9 0 0 1 20 29" />
+      </>
+    ),
+  },
+  {
+    name: "Prioritize",
+    text: "Turn signals into priorities.",
+    icon: (
+      <>
+        <path d="M12 9h23M12 20h16M12 31h9" />
+        <circle cx="5" cy="9" r="2" fill="currentColor" />
+        <circle cx="5" cy="20" r="2" />
+        <circle cx="5" cy="31" r="2" />
+      </>
+    ),
+  },
+  {
+    name: "Coordinate",
+    text: "Put resources where they’re needed.",
+    icon: (
+      <>
+        <path d="M5 20h9m6-3 8-8h7m-15 14 8 8h7" />
+        <circle cx="17" cy="20" r="3" />
+        <circle cx="35" cy="9" r="2" fill="currentColor" />
+        <circle cx="35" cy="31" r="2" fill="currentColor" />
+      </>
+    ),
+  },
 ];
 
 function DashboardLink({ className }: { className: string }) {
@@ -18,6 +50,63 @@ function DashboardLink({ className }: { className: string }) {
     <span className={className} role="link" aria-disabled="true">
       Demo coming soon
     </span>
+  );
+}
+
+function InformationRibbon() {
+  return (
+    <aside className="lp-ribbon" aria-label="Partners, technology and our mission" id="ecosystem">
+      <input className="lp-ribbon-toggle sr-only" type="checkbox" id="pause-ribbon" />
+      <label className="lp-ribbon-control" htmlFor="pause-ribbon">
+        <span className="sr-only">Pause information strip</span>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" aria-hidden="true">
+          <path className="lp-ribbon-pause" d="M9 5v14M15 5v14" strokeWidth="2" />
+          <path className="lp-ribbon-play" d="m9 5 10 7-10 7Z" />
+        </svg>
+      </label>
+      <div className="lp-ribbon-viewport">
+        <div className="lp-ribbon-track">
+          {[0, 1].map((copy) => (
+            <ul className="lp-ribbon-group" key={copy} aria-hidden={copy === 1 || undefined}>
+              <li className="lp-ribbon-brand">
+                <span className="lp-ribbon-label">Built with</span>
+                <Image
+                  src="/brand/happyrobot.svg"
+                  alt="HappyRobot"
+                  width={141}
+                  height={22}
+                  loading="eager"
+                />
+              </li>
+              <li className="lp-ribbon-message">
+                Less noise. <span>More action.</span>
+              </li>
+              <li className="lp-ribbon-brand">
+                <span className="lp-ribbon-label">Partner</span>
+                <Image
+                  className="lp-ribbon-junta"
+                  src="/brand/junta-de-andalucia.png"
+                  alt="Junta de Andalucía"
+                  width={184}
+                  height={48}
+                  loading="eager"
+                />
+              </li>
+              <li className="lp-ribbon-message">
+                One goal. <span>Zero preventable harm.</span>
+              </li>
+              <li className="lp-ribbon-brand">
+                <span className="lp-ribbon-label">Signal intelligence</span>
+                <span className="lp-ribbon-jev">Jev / typesafe.ai</span>
+              </li>
+              <li className="lp-ribbon-event">
+                HackSpain <span>2026</span>
+              </li>
+            </ul>
+          ))}
+        </div>
+      </div>
+    </aside>
   );
 }
 
@@ -64,14 +153,14 @@ export default function LandingPage() {
       <main id="main" tabIndex={-1}>
         <section className="lp-hero" id="hero" aria-labelledby="hero-title">
           <div className="lp-hero-inner lp-wrap">
-            <p className="lp-hero-intro">An agentic command center for changing crises.</p>
+            <p className="lp-hero-intro">Agentic crisis response</p>
             <div className="lp-hero-composition">
               <h1 id="hero-title">
-                See clearly.
+                From noise
                 <br />
-                Decide before
+                to coordinated
                 <br />
-                it&apos;s certain.
+                action.
               </h1>
               <FaroIcon
                 className="lp-hero-mark"
@@ -81,45 +170,45 @@ export default function LandingPage() {
             </div>
             <div className="lp-hero-bottom">
               <p className="lp-lede">
-                Turn incomplete signals into coordinated action.
+                Filter the noise. Rank what matters.
                 <br />
-                Keep a human in control.
+                Coordinate the response.
               </p>
-              <DashboardLink className="lp-btn lp-btn-primary" />
+              <div className="lp-hero-actions">
+                <a className="lp-btn lp-btn-primary" href="#how">
+                  See Far0 respond <span aria-hidden="true">↗</span>
+                </a>
+                <DashboardLink className="lp-btn lp-btn-outline" />
+              </div>
             </div>
             <div className="lp-hero-foot">
-              <p>Built for the HappyRobot challenge</p>
-              <a href="#problem">
-                How it works <span aria-hidden="true">↓</span>
+              <p>One goal: zero preventable harm.</p>
+              <a href="#meaning">
+                What Far0 stands for <span aria-hidden="true">↓</span>
               </a>
             </div>
           </div>
         </section>
+        <InformationRibbon />
         <section className="lp-response lp-wrap" id="problem" aria-labelledby="problem-title">
           <div className="lp-section-heading">
-            <h2 id="problem-title">A crisis moves faster than certainty.</h2>
-            <p>
-              Reports conflict. Resources are limited. Waiting for the full picture is a decision
-              too.
-            </p>
+            <h2 id="problem-title">
+              Intelligence,
+              <br />
+              coordinated.
+            </h2>
+            <p>Less noise. Clear priorities. Resources in motion.</p>
           </div>
           <div className="lp-system" id="how">
-            <ScrollStage src="/media/faro-scroll.mp4" poster="/media/faro-poster.jpg">
-              <p className="lp-render-caption">A clear direction. Even as conditions change.</p>
+            <ScrollStage src="/media/faro-scroll.mp4" poster="/media/faro-poster.jpg" steps={steps}>
+              <p className="lp-render-caption">New information. Reassess. Adapt.</p>
             </ScrollStage>
-            <div className="lp-system-copy">
-              <h3>
-                One picture. <br />A response that adapts.
-              </h3>
-              <ol className="lp-steps">
-                {steps.map((step) => (
-                  <li key={step.name}>
-                    <h4>{step.name}</h4>
-                    <p>{step.text}</p>
-                  </li>
-                ))}
-              </ol>
-              <p className="lp-system-note">The crisis changes. The decision loop stays.</p>
+            <div className="lp-technology">
+              <a className="lp-happyrobot" href="https://www.happyrobot.ai">
+                <span>Built with</span>
+                <Image src="/brand/happyrobot.svg" alt="HappyRobot" width={141} height={22} />
+              </a>
+              <a href="https://typesafe.ai">Signal filtering: Jev / typesafe.ai</a>
             </div>
           </div>
         </section>
@@ -128,63 +217,18 @@ export default function LandingPage() {
             <div className="lp-control-copy">
               <p className="lp-section-label">Human control</p>
               <h2 id="control-title">
-                Autonomy.
+                Autonomous action.
                 <br />
-                With authority
-                <br />
-                in your hands.
+                Human authority.
               </h2>
-              <p>
-                See the reason behind an action. Review its consequences. Approve, hold or override.
-              </p>
-              <p className="lp-control-promise">Mass alerts always need human approval.</p>
             </div>
-            <figure className="lp-decision">
-              <figcaption className="lp-decision-caption">
-                <span>Decision review</span>
-                <span>Illustrative view</span>
-              </figcaption>
-              <div className="lp-decision-body">
-                <span className="lp-status">
-                  <span aria-hidden="true" />
-                  Awaiting your decision
-                </span>
-                <h3>Send a public alert</h3>
-                <p className="lp-decision-summary">
-                  A changing situation puts the current plan in doubt.
-                </p>
-                <dl className="lp-decision-reasons">
-                  <div>
-                    <dt>What changed</dt>
-                    <dd>The planned access route is unavailable.</dd>
-                  </div>
-                  <div>
-                    <dt>Proposed response</dt>
-                    <dd>Verify an alternative. Update the people affected.</dd>
-                  </div>
-                </dl>
-                <details className="lp-consequence">
-                  <summary>Review the trade-off</summary>
-                  <p>
-                    Holding the alert gives the coordinator time to verify the route. People remain
-                    uninformed while that check is pending.
-                  </p>
-                </details>
-                <p className="lp-decision-gate">
-                  <svg
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    stroke="currentColor"
-                    strokeWidth="1.5"
-                    aria-hidden="true"
-                  >
-                    <rect x="5" y="10" width="14" height="11" rx="3" />
-                    <path d="M8 10V7a4 4 0 0 1 8 0v3M12 14v3" />
-                  </svg>
-                  Nothing is sent from this illustration.
-                </p>
-              </div>
-            </figure>
+            <div className="lp-control-copy">
+              <p className="lp-control-promise">Mass alerts always need human approval.</p>
+              <details className="lp-consequence">
+                <summary>Before an alert is sent</summary>
+                <p>Review recipients and safety guidance. Approve, hold or override.</p>
+              </details>
+            </div>
           </div>
         </section>
         <section className="lp-demo lp-wrap" id="demo" aria-labelledby="demo-title">
@@ -192,7 +236,7 @@ export default function LandingPage() {
             <h2 id="demo-title">
               Change the situation.
               <br />
-              Watch the plan change.
+              See Far0 respond.
             </h2>
             <DashboardLink className="lp-btn lp-btn-primary" />
           </div>
@@ -204,9 +248,7 @@ export default function LandingPage() {
             </p>
             <div>
               <h3>Sierra Bermeja wildfire</h3>
-              <p>
-                Explore changing wind, a closed road and an SMS outage in the operator prototype.
-              </p>
+              <p>A wind shift. Reassigned firefighting resources. A human-approved alert.</p>
               <p className="lp-case-context">Scenario context: 112 Andalucía and INFOCA.</p>
             </div>
           </div>

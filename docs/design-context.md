@@ -18,8 +18,9 @@ It uses incomplete information, updates plans and coordinates actions with
 human oversight. This is a HackSpain 2026 submission for the HappyRobot challenge.
 
 The main audience is the jury: understand the difference quickly and reach the
-demo. Human control is the primary proof point. Sierra Bermeja is a secondary,
-explicitly simulated use case, not the overarching product identity.
+demo. The story follows filtering, prioritization, resource coordination and
+reassessment. Human approval gates mass alerts. Sierra Bermeja demonstrates
+the loop as an explicitly simulated use case, not the overarching product identity.
 
 ## Direction chosen by the user
 
@@ -79,17 +80,71 @@ The decorative 3D video scrubs with scroll. It has no audio, controls, crisis
 map or wildfire imagery. Its camera and beacon move around a metallic,
 graphite lighthouse. A static poster covers unsupported/disabled motion.
 
+## Storytelling and information strip
+
+The user requested integration against the latest `main` (`bcb5455`) after
+another session added the intro dolly. Preserve that opening and its media.
+The approved storytelling from this session is combined with it:
+
+- Hero: “From noise to coordinated action.”
+- Far0 means Fully Automated Response. Beside the second lighthouse, F / a / r
+  explains each word while the zero cycles through “harm”, “time lost” and
+  “victims”. “Our ambition” makes the goal aspirational, not a guarantee.
+- The typing animation pauses offscreen, in a hidden tab or using Pause / Resume.
+  Reduced motion and no-JS show static alternatives. Screen readers receive a
+  stable description. All client animation remains in `ScrollStage.tsx`.
+- The user-described flow is Jev (typesafe.ai) filtering → scoring and priority
+  ranking → an LLM agent coordinating resources → reassessment.
+- Under the lighthouse, Filter / Prioritize / Coordinate icons lead into one
+  glass card. A wind shift threatens a new community and Far0 reassigns
+  firefighting resources.
+- The card starts with a complete summary. Show the response / Next step /
+  Back / Replay scenario provide four manual stages, ending at “Alert ready
+  for approval”. Future events use pending wording. There is no auto-advance,
+  approval button or live messaging integration.
+- Step changes are announced politely. At the lower Back bound, focus moves
+  to Next step without scrolling. Reduced motion removes transitions and
+  no-JS keeps the summary with controls hidden.
+
+The user asked for a horizontal strip with logos, including Junta de Andalucía
+as a partner, and short slogans. It sits immediately below the hero, using
+the existing ink, emerald and mint palette. Content includes HappyRobot,
+Junta de Andalucía, Jev / typesafe.ai, HackSpain 2026, “Less noise. More action.”
+and “One goal. Zero preventable harm.” Do not add other partnership claims
+without user confirmation.
+
+The strip uses a slow CSS loop with a native Pause information strip checkbox.
+It also pauses on hover. It needs no JavaScript, library or remote script.
+Reduced motion presents all items statically in wrapping rows; the duplicate
+track is hidden from assistive technology.
+
+Logo provenance:
+
+- `public/brand/happyrobot.svg`: official header SVG from
+  https://www.happyrobot.ai, retrieved on 2026-09-19. Original path geometry
+  is preserved; its fill variable resolves to the landing's paper color.
+  “Built with” credits the technology, without claiming endorsement.
+- `public/brand/junta-de-andalucia.png`: official horizontal monochrome logo,
+  downloaded unchanged on 2026-09-19 from
+  https://www.juntadeandalucia.es/sites/default/files/2023-02/byn_0.png.
+  Listed on the Junta's official 2021–2027 logos page:
+  https://www.juntadeandalucia.es/organismos/economiahaciendayfondoseuropeos/areas/fondos-europeos-andalucia/comunicacion/logos-manuales/periodos-2021-27/logos-21-27.html.
+  CSS renders it white on the dark strip, retaining its aspect ratio.
+  The partner designation was supplied by the user.
+
+Original Far0 SVG exports remain unchanged.
+
 ## Current structure
 
-1. Intro screen with the Far0 lockup and scroll-driven zoom.
+1. Intro dolly into the lighthouse with the Far0 lockup.
 2. Sticky navigation with the Far0 lockup.
-3. Hero: “See clearly. Decide before it's certain.”
-4. Problem: “A crisis moves faster than certainty.”
-5. Lighthouse and the Perceive / Decide / Act loop.
-6. Human control: “Autonomy. With authority in your hands.” with an illustrative
-   decision review and native disclosure of trade-offs.
-7. Demo invitation and a secondary simulated Sierra Bermeja wildfire example.
-8. Footer.
+3. Emerald hero: “From noise to coordinated action.”
+4. Horizontal partner, technology and mission strip.
+5. System introduction: “Intelligence, coordinated.”
+6. Lighthouse beside the Far0 meaning, followed by icons and the manual response card.
+7. Human control: “Autonomous action. Human authority.” with a native disclosure.
+8. Demo invitation and a secondary simulated Sierra Bermeja wildfire example.
+9. Footer.
 
 The original brief listed eleven sections. The user subsequently requested
 this shorter structure; do not restore the earlier version without approval.
