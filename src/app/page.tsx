@@ -100,7 +100,15 @@ function InformationRibbon() {
                 <span className="lp-ribbon-jev">Jev / typesafe.ai</span>
               </li>
               <li className="lp-ribbon-event">
-                HackSpain <span>2026</span>
+                <Image
+                  className="lp-ribbon-hackspain"
+                  src="/brand/hackspain.svg"
+                  alt="HackSpain"
+                  width={928}
+                  height={306}
+                  loading="eager"
+                />
+                <span>2026</span>
               </li>
             </ul>
           ))}

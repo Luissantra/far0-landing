@@ -105,9 +105,9 @@ The static poster remains for mobile, reduced motion, disabled JavaScript and
 video errors; there the intro is a single static screen. Video loading is
 deferred until its section is nearby.
 
-Below the emerald hero, a horizontal information strip mixes HappyRobot and
-Junta de Andalucía logos, the Jev / typesafe.ai credit, HackSpain 2026 and short
-mission statements. A native checkbox pauses the CSS animation without
+Below the emerald hero, a horizontal information strip mixes HappyRobot,
+Junta de Andalucía and HackSpain logos, the Jev / typesafe.ai credit, the 2026
+event year and short mission statements. A native checkbox pauses the CSS animation without
 JavaScript, and hovering pauses it on pointer devices. Reduced motion shows
 all items in a static, wrapping layout. The decorative duplicate is hidden
 from assistive technology. All logos are served locally; asset provenance and

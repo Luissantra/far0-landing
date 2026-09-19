@@ -120,6 +120,9 @@ track is hidden from assistive technology.
 
 Logo provenance:
 
+- `public/brand/hackspain.svg`: official logo supplied by the user on 2026-09-19.
+  The original SVG is stored unchanged and displayed beside the event year,
+  preserving its colors and aspect ratio.
 - `public/brand/happyrobot.svg`: official header SVG from
   https://www.happyrobot.ai, retrieved on 2026-09-19. Original path geometry
   is preserved; its fill variable resolves to the landing's paper color.

@@ -363,6 +363,10 @@
 .lp .lp-ribbon-junta {
   filter: brightness(0) invert(1);
 }
+.lp .lp-ribbon-hackspain {
+  width: auto;
+  height: 3rem;
+}
 .lp .lp-ribbon-message,
 .lp .lp-ribbon-event,
 .lp .lp-ribbon-jev {
